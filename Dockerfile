@@ -16,8 +16,6 @@ RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
   apt-get update && \
   apt-get -y upgrade && \
-## clean sources
-  apt-get clean && \
   apt-get install -y build-essential && \
   apt-get install -y software-properties-common && \
   apt-get install -y byobu curl git htop man unzip vim wget
@@ -70,10 +68,15 @@ RUN apt-get update ; apt-get install neo4j -y
 add launch.sh /
 run chmod +x /launch.sh
 
+## clean sources
+RUN apt-get clean
+
 ## turn on indexing: http://chrislarson.me/blog/install-neo4j-graph-database-ubuntu
 ## enable neo4j indexing, and set indexable keys to name,age
 ## run sed -i "s|#node_auto_indexing|node_auto_indexing|g" /var/lib/neo4j/conf/neo4j.properties
 ## run sed -i "s|#node_keys_indexable|node_keys_indexable|g" /var/lib/neo4j/conf/neo4j.properties
+
+WORKDIR /
 
 ## entrypoint
 cmd ["/bin/bash", "-c", "/launch.sh"]
