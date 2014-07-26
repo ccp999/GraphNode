@@ -1,4 +1,4 @@
 GraphNode
 =========
 
-Neo4j + Node.js + Zeromq
+Ubuntu + Java 7 + Neo4j + Node.js + Zeromq

@@ -56,6 +56,20 @@ RUN \
   apt-get update && \
   apt-get install -y oracle-java7-installer
 
+# Install zeromq
+RUN \
+  cd /tmp && \
+  wget http://download.zeromq.org/zeromq-4.0.4.tar.gz && \
+  tar xvzf zeromq-4.0.4.tar.gz && \ 
+  rm -f zeromq-4.0.4.tar.gz
+  cd zeromq-4.0.4 \
+  ./autogen.sh && \
+  ./configure && \
+  make && \
+  make install \
+  cd /tmp && \
+  rm -rf /tmp/zeromq*
+
 ## install neo4j according to http://www.neo4j.org/download/linux
 # Import neo4j signing key
 RUN wget -O - http://debian.neo4j.org/neotechnology.gpg.key | apt-key add - 
