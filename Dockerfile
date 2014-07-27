@@ -61,10 +61,10 @@ RUN \
 RUN \
   apt-get install -y libtool autoconf automake uuid-dev && \
   cd /tmp && \
-  wget http://download.zeromq.org/zeromq-4.0.4.tar.gz && \
-  tar -xvzf zeromq-4.0.4.tar.gz && \
-  rm -f zeromq-4.0.4.tar.gz && \
-  cd zeromq-4.0.4 && \
+  wget https://github.com/zeromq/jzmq/archive/master.zip && \
+  tar -xvzf master.zip && \
+  rm -f master.zip  && \
+  cd jzmq-master && \
   ./autogen.sh && \
   ./configure && \
   make && \
