@@ -59,7 +59,7 @@ RUN \
 
 # Install zeromq
 RUN \
-  apt-get install -y libtool autoconf automake libuuid-dev && \
+  apt-get install -y libtool autoconf automake uuid-dev && \
   cd /tmp && \
   wget http://download.zeromq.org/zeromq-4.0.4.tar.gz && \
   tar -xvzf zeromq-4.0.4.tar.gz && \
