@@ -38,7 +38,7 @@ WORKDIR /root
 RUN \
   cd /tmp && \
   wget http://nodejs.org/dist/node-latest.tar.gz && \
-  tar xvzf node-latest.tar.gz && \
+  tar -xvzf node-latest.tar.gz && \
   rm -f node-latest.tar.gz && \
   cd node-v* && \
   ./configure && \
@@ -59,16 +59,21 @@ RUN \
 
 # Install zeromq
 RUN \
+  apt-get install -y libtool autoconf automake libuuid-dev && \
   cd /tmp && \
   wget http://download.zeromq.org/zeromq-4.0.4.tar.gz && \
-  tar xvzf zeromq-4.0.4.tar.gz && \ 
-  rm -f zeromq-4.0.4.tar.gz
-  cd zeromq-4.0.4 \
+  tar -xvzf zeromq-4.0.4.tar.gz && \
+  rm -f zeromq-4.0.4.tar.gz && \
+  cd zeromq-4.0.4 && \
   ./autogen.sh && \
   ./configure && \
   make && \
-  make install \
-  cd /tmp && \
+  make install && \
+  ldconfig && \
+  export CLASSPATH = $CLASSPATH:/usr/local/share/java/zmq.jar && \
+  export LD_LIBRARY_PATH = $LD_LIBRARY_PATH:/usr/local/lib && \
+  echo $CLASSPATH && \
+  echo $LD_LIBRARY_PATH && \
   rm -rf /tmp/zeromq*
 
 ## install neo4j according to http://www.neo4j.org/download/linux
