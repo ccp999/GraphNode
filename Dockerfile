@@ -62,7 +62,7 @@ RUN \
   apt-get install -y libtool autoconf automake uuid-dev && \
   cd /tmp && \
   wget https://github.com/zeromq/jzmq/archive/master.zip && \
-  tar -xvzf master.zip && \
+  tar -xvzf jzmq-master.zip && \
   rm -f master.zip  && \
   cd jzmq-master && \
   ./autogen.sh && \
